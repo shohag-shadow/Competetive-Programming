@@ -29,4 +29,4 @@
     - [ ] Network Flows
     - [ ] Graph and Data Structures  
 - [ ] Dynamic programming  
-    - ill add topic after i finish graph
+    - i'll add topic after i finish graph
