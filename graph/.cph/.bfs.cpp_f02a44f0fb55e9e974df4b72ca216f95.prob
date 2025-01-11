@@ -1,1 +1,0 @@
-{"name":"Local: bfs","url":"c:\\Users\\mdsho\\Desktop\\Competetive_Programming\\graph\\bfs.cpp","tests":[{"id":1736609041666,"input":"7 8\n1 2\n1 7\n7 4\n2 3\n3 4\n3 5\n4 5\n5 6\n","output":"1 2 7 3 4 5 6 \r\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\mdsho\\Desktop\\Competetive_Programming\\graph\\bfs.cpp","group":"local","local":true}
