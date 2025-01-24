@@ -40,7 +40,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll n;
+    ll n; 
     cin>>n;
     ll arr[n];
     vector<ll>nep(n,M);
