@@ -9,7 +9,7 @@
 ## Topic to learn
 - [ ] Graph  
     - [x] Graph representation
-    - [ ] BFS
+    - [x] BFS
     - [ ] DFS
     - [ ] Cycle detection
     - [ ] Directed Acyclic Graph
