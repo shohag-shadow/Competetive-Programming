@@ -18,7 +18,7 @@
     - [ ] Shortest path algorithm  
     - [ ] Travelling salesman problem  
     - [ ] Flood fill  
-    - [ ] Multi source BFS  
+    - [x] Multi source BFS  
     - [ ] DFS tree and backedges  
     - [ ] Articulation point and Bridges
     - [ ] Strongly connected component
