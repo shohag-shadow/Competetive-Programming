@@ -10,7 +10,7 @@
 - [ ] Graph  
     - [x] Graph representation
     - [x] BFS
-    - [ ] DFS
+    - [x] DFS
     - [ ] Cycle detection
     - [ ] Directed Acyclic Graph
     - [ ] Disjoint set union

@@ -15,56 +15,62 @@ typedef tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_up
 #define memn(a) memset(a, -1, sizeof(a)) 
 ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
-void dfs(ll node,ll par,ll j,vector<pair<ll,ll>>graph[],vector<ll>out[])
+const ll N=200010;
+vector<pair<ll,ll>>edge;
+vector<pair<ll,ll>>graph[N];
+ll out[N+10];
+ll vis[N];
+bool ans;
+void dfs(ll source,ll flag)
 {
-    ll i=0;
-    for(auto u:graph[node])
+    vis[source]=1;
+    out[source]=flag;
+    //cout<<source<<" ";
+    for(auto child:graph[source])
     {
-        if(i==j)i++;
-        if(u.first!=par)
+        if(out[child.first]==flag)ans=false;
+        if(vis[child.first]==0)
         {
-            out[i].push_back(u.second);
-            dfs(u.first,node,i,graph,out);
-            i++;
+            dfs(child.first,!flag);
         }
     }
+    return;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll n;
-    cin>>n;
-    vector<pair<ll,ll>>graph[n+1];
-    ll ans=0;
-    ll x=0;
-    for(int i=1;i<n;i++)
+    ll n,m;
+    cin>>n>>m;
+    for(int i=0;i<=n;i++)
     {
+        out[i]=-1;
+    }
+    ans=true;
+    for(int i=0;i<m;i++)
+    {
+        
         ll a,b;
         cin>>a>>b;
         graph[a].push_back({b,i});
         graph[b].push_back({a,i});
-        if(graph[a].size()>ans)
-        {
-            ans=graph[a].size();
-            x=a;
-        }
-        if(graph[b].size()>ans)
-        {
-            ans=graph[b].size();
-            x=b;
-        }
-        
+        edge.push_back({a,b});
     }
-    //cout<<x<<endl;
-    cout<<ans<<endl;
-    vector<ll>out[ans];
-    dfs(x,-1,-1,graph,out);
-    for(int i=0;i<ans;i++)
+    dfs(1,1);
+    if(ans)
     {
-        cout<<out[i].size()<<" ";
-        for(auto u:out[i])cout<<u<<" ";
+        cout<<"YES"<<endl;
+        for(ll i=0;i<m;i++)
+        {
+            if(out[edge[i].first]==1)cout<<1;
+            else cout<<0;
+        }
         cout<<endl;
+    }
+    else 
+    {
+        cout<<"NO"<<endl;
     }
 }

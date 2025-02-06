@@ -15,56 +15,54 @@ typedef tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_up
 #define memn(a) memset(a, -1, sizeof(a)) 
 ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
-void dfs(ll node,ll par,ll j,vector<pair<ll,ll>>graph[],vector<ll>out[])
+const ll N=300010;
+ll root;
+vector<pair<ll,ll>>graph[N];
+ll vis[N];
+ll d[N];
+set<ll>ans;
+ll dfs(ll root)
 {
-    ll i=0;
-    for(auto u:graph[node])
+    if(vis[root]==1)return 1;
+    vis[root]=1;
+    ll degree=0;
+    for(auto child:graph[root])
     {
-        if(i==j)i++;
-        if(u.first!=par)
-        {
-            out[i].push_back(u.second);
-            dfs(u.first,node,i,graph,out);
-            i++;
+        ll k=dfs(child.first);
+        if(k==0){
+            ans.insert(child.second);
+            degree++;
         }
     }
+    return d[root]==-1||d[root]==degree%2;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll n;
-    cin>>n;
-    vector<pair<ll,ll>>graph[n+1];
-    ll ans=0;
-    ll x=0;
-    for(int i=1;i<n;i++)
+    ll n,m;
+    cin>>n>>m;
+    ll root=1;
+    for(int i=1;i<=n;i++)
+    {
+        cin>>d[i];
+        if(d[i]==-1)root=i;
+    }
+    for(int i=1;i<=m;i++)
     {
         ll a,b;
         cin>>a>>b;
         graph[a].push_back({b,i});
         graph[b].push_back({a,i});
-        if(graph[a].size()>ans)
-        {
-            ans=graph[a].size();
-            x=a;
-        }
-        if(graph[b].size()>ans)
-        {
-            ans=graph[b].size();
-            x=b;
-        }
-        
     }
-    //cout<<x<<endl;
-    cout<<ans<<endl;
-    vector<ll>out[ans];
-    dfs(x,-1,-1,graph,out);
-    for(int i=0;i<ans;i++)
+    ll k=dfs(root);
+    if(k==0)cout<<-1<<endl;
+    else
     {
-        cout<<out[i].size()<<" ";
-        for(auto u:out[i])cout<<u<<" ";
+        cout<<ans.size()<<endl;
+        for(auto u:ans)cout<<u<<" ";
         cout<<endl;
     }
+
 }
