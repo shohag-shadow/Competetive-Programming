@@ -3,26 +3,17 @@
 #include<ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
-#define ll long long int
-#define endl '\n'
-typedef tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update> pbds; // find_by_order, order_of_key
-#define all(v) v.begin(), v.end()
-#define yes cout << "YES" << endl        
-#define no cout << "NO" << endl          
-#define M 998244353                     
-#define lcm(a, b) a *b / gcd(a, b)       
-#define memz(a) memset(a, 0, sizeof(a))  
-#define memn(a) memset(a, -1, sizeof(a)) 
-ll dx[]={1,0,-1,0,1,-1,-1,1};
-ll dy[]={0,1,0,-1,1,1,-1,-1};
+typedef tree<long long int, null_type, less<long long int>, rb_tree_tag, tree_order_statistics_node_update> pbds; // find_by_order, order_of_key
+long long int dx[]={1,0,-1,0,1,-1,-1,1};
+long long int dy[]={0,1,0,-1,1,1,-1,-1};
 bool ans;
-pair<ll,ll> dfs(ll source,ll flag,vector<ll>graph[],vector<ll>&vis,vector<ll>&out)
+pair<long long int,long long int> dfs(long long int source,long long int flag,vector<long long int>graph[],vector<long long int>&vis,vector<long long int>&out)
 {
     vis[source]=1;
     out[source]=flag;
     //cout<<source<<" ";
     
-    pair<ll,ll>p={0,0};
+    pair<long long int,long long int>p={0,0};
     if(flag==0)p.second++;
     else p.first++;
     for(auto child:graph[source])
@@ -30,20 +21,20 @@ pair<ll,ll> dfs(ll source,ll flag,vector<ll>graph[],vector<ll>&vis,vector<ll>&ou
         if(out[child]==flag)ans=false;
         if(vis[child]==0)
         {
-            pair<ll,ll>x=dfs(child,!flag,graph,vis,out);
+            pair<long long int,long long int>x=dfs(child,!flag,graph,vis,out);
             p.first+=x.first;
             p.second+=x.second;
         }
     }
     return p;
 }
-ll binary_expo(ll a,ll b)
+long long int binary_expo(long long int a,long long int b)
 {
-    ll ans=1;
+    long long int ans=1;
     while(b)
     {
-        if(b%2)ans=(ans*a)%M;
-        a=(a*a)%M;
+        if(b%2)ans=(ans*a)%998244353                     ;
+        a=(a*a)%998244353                     ;
         b/=2;
     }
     return ans;
@@ -53,43 +44,42 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll tst;
+    long long int tst;
     cin>>tst;
-    for(ll test=1;test<=tst;test++)
+    for(long long int test=1;test<=tst;test++)
     {
         //cout<<"Case "<<test<<": ";
-        ll n,m;
+        long long int n,m;
         cin>>n>>m;
-        vector<ll>graph[n+2];
-        vector<ll>vis(n+1,0);
+        vector<long long int>graph[n+2];
+        vector<long long int>vis(n+1,0);
         for(int i=0;i<m;i++)
         {
-            ll a,b;
+            long long int a,b;
             cin>>a>>b;
             graph[a].push_back(b);
             graph[b].push_back(a);
         }
         ans=1;
-        vector<ll>out(n+1,-1);
-        ll x=1;
+        vector<long long int>out(n+1,-1);
+        long long int x=1;
         for(int i=1;i<=n;i++)
         {
             if(vis[i]==0)
             {
-                pair<ll,ll>p=dfs(i,0,graph,vis,out);
-                ll zero=p.first,one=p.second;
-                x=(x*((binary_expo(2,zero)+binary_expo(2,one))%M))%M;
+                pair<long long int,long long int>p=dfs(i,0,graph,vis,out);
+                long long int zero=p.first,one=p.second;
+                x=(x*((binary_expo(2,zero)+binary_expo(2,one))%998244353))%998244353;
             }
             if(ans==0)break;
         }
         if(ans)
         {
-            
-            cout<<x<<endl;
+            cout<<x<<'\n';
         }
         else
         {
-            cout<<0<<endl;
+            cout<<0<<'\n';
         }
         
     }
