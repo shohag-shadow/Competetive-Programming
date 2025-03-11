@@ -11,9 +11,9 @@
     - [x] Graph representation
     - [x] BFS
     - [x] DFS
-    - [ ] Cycle detection
-    - [ ] Directed Acyclic Graph
-    - [ ] Disjoint set union
+    - [x] Cycle detection
+    - [x] Directed Acyclic Graph
+    - [x] Disjoint set union
     - [ ] Minimum spanning tree
     - [ ] Shortest path algorithm  
     - [ ] Travelling salesman problem  
