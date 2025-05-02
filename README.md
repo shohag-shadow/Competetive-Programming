@@ -20,7 +20,7 @@
     - [x] Flood fill  
     - [x] Multi source BFS  
     - [x] DFS tree and backedges  
-    - [ ] Articulation point and Bridges
+    - [x] Articulation point and Bridges
     - [ ] Strongly connected component
     - [ ] Trees
     - [ ] Euler Tour
