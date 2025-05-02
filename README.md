@@ -14,12 +14,12 @@
     - [x] Cycle detection
     - [x] Directed Acyclic Graph
     - [x] Disjoint set union
-    - [ ] Minimum spanning tree
-    - [ ] Shortest path algorithm  
-    - [ ] Travelling salesman problem  
-    - [ ] Flood fill  
+    - [x] Minimum spanning tree
+    - [x] Shortest path algorithm  
+    - [x] Travelling salesman problem  
+    - [x] Flood fill  
     - [x] Multi source BFS  
-    - [ ] DFS tree and backedges  
+    - [x] DFS tree and backedges  
     - [ ] Articulation point and Bridges
     - [ ] Strongly connected component
     - [ ] Trees
