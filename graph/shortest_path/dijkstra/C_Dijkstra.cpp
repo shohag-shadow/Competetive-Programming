@@ -17,26 +17,27 @@ ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
 const ll N=1e5+100;
 vector<pair<ll,ll>>graph[N];
-void dijkstra(vector<ll>&dis,vector<ll>&par,ll n)
+void dijkstra(vector<ll> &dis, vector<ll> &par, ll n)
 {
-    dis[1]=0;
-    set<pair<ll,ll>>pq;
-    pq.insert({0,1});
-    while(!pq.empty())
+    dis[1] = 0;
+    set<pair<ll, ll>> pq;
+    pq.insert({0, 1});
+    while (!pq.empty())
     {
-        pair<ll,ll>parent=*pq.begin();
+        pair<ll, ll> parent = *pq.begin();
         pq.erase(pq.begin());
-        for(auto child:graph[parent.second])
+        for (auto child : graph[parent.second])
         {
-            if(dis[child.first]>dis[parent.second]+child.second)
+            if (dis[child.first] > dis[parent.second] + child.second)
             {
-                pq.erase({dis[child.first],child.first});
-                dis[child.first]=dis[parent.second]+child.second;
-                pq.insert({dis[child.first],child.first});
-                par[child.first]=parent.second;
+                pq.erase({dis[child.first], child.first});
+                dis[child.first] = dis[parent.second] + child.second;
+                pq.insert({dis[child.first], child.first});
+                par[child.first] = parent.second;
             }
         }
-        if(parent.second==n)break;
+        if (parent.second == n)
+            break;
     }
     return;
 }

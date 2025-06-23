@@ -16,33 +16,33 @@ template <class T> using pbds= tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
 const ll N=5e5+300;
-vector<ll>graph[N];
-vector<ll>graph1[N];
-vector<ll>vis(N,0);
-vector<ll>top;
+vector<ll> graph[N];
+vector<ll> graph1[N];
+vector<ll> vis(N, 0);
+vector<ll> top;
 void topological_sort(ll node)
 {
-    vis[node]=1;
-    for(auto child:graph[node])
+    vis[node] = 1;
+    for (auto child : graph[node])
     {
-        if(!vis[child])
+        if (!vis[child])
         {
             topological_sort(child);
         }
     }
     top.push_back(node);
 }
-vector<ll>visited(N,0);
-vector<vector<ll>>component;
-void dfs(ll node,vector<ll>&v)
+vector<ll> visited(N, 0);
+vector<vector<ll>> component;
+void dfs(ll node, vector<ll> &v)
 {
-    visited[node]=1;
+    visited[node] = 1;
     v.push_back(node);
-    for(auto child:graph1[node])
+    for (auto child : graph1[node])
     {
-        if(!visited[child])
+        if (!visited[child])
         {
-            dfs(child,v);
+            dfs(child, v);
         }
     }
 }
@@ -51,40 +51,41 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll n,m;
-    cin>>n>>m;
-    for(int i=0;i<m;i++)
+    ll n, m;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++)
     {
-        ll a,b;
-        cin>>a>>b;
+        ll a, b;
+        cin >> a >> b;
         graph[a].push_back(b);
         graph1[b].push_back(a);
     }
-    for(int i=0;i<n;i++)
+    for (int i = 0; i < n; i++)
     {
-        if(!vis[i])
+        if (!vis[i])
         {
             topological_sort(i);
         }
     }
     reverse(all(top));
-    ll ans=0;
-    for(auto node:top)
+    ll ans = 0;
+    for (auto node : top)
     {
-        if(!visited[node])
+        if (!visited[node])
         {
-            vector<ll>v;
-            dfs(node,v);
+            vector<ll> v;
+            dfs(node, v);
             component.push_back(v);
             ans++;
         }
     }
-    cout<<ans<<endl;
-    for(auto u:component)
+    cout << ans << endl;
+    for (auto u : component)
     {
-        cout<<u.size()<<" ";
+        cout << u.size() << " ";
         reverse(all(u));
-        for(auto v:u)cout<<v<<" ";
-        cout<<endl;
+        for (auto v : u)
+            cout << v << " ";
+        cout << endl;
     }
 }
