@@ -15,31 +15,39 @@ template <class T> using pbds= tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 #define memn(a) memset(a, -1, sizeof(a)) 
 ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
-ll dp[101][100010];
-ll func(ll n,ll w,ll wt[],ll val[])
+const ll N=100010;
+ll dp[N][2];
+bool func(ll k,bool x,ll arr[],ll n)
 {
-    if(n<0)return 0;
-    if(dp[n][w]!=-1)return dp[n][w];
-    ll ans=func(n-1,w,wt,val);
-    if(w>=wt[n])
+    //cout<<k<<endl;
+    if(dp[k][x]!=-1)return dp[k][x];
+    bool ans=!x;
+    for(int i=0;i<n;i++)
     {
-        ans=max(ans,func(n-1,w-wt[n],wt,val)+val[n]);
+        if(arr[i]>k)break;
+        bool subans=func(k-arr[i],!x,arr,n);
+        if(subans==x)
+        {
+            ans=x;
+            break;
+        }
     }
-    return dp[n][w]=ans;
+    return dp[k][x]=ans;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll n,w;
-    memn(dp);
-    cin>>n>>w;
-    ll wt[n];
-    ll val[n];
-    for(int i=0;i<n;i++)
+    ll n,k;
+    cin>>n>>k;
+    ll arr[n];
+    for(int i=0;i<=k;i++)
     {
-        cin>>wt[i]>>val[i];
+        dp[i][0]=-1;
+        dp[i][1]=-1;
     }
-    cout<<func(n-1,w,wt,val)<<endl;
+    for(auto &u:arr)cin>>u;
+    if(func(k,true,arr,n))cout<<"First"<<endl;
+    else cout<<"Second"<<endl;
 }
