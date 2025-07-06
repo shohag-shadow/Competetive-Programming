@@ -15,38 +15,30 @@ template <class T> using pbds= tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 #define memn(a) memset(a, -1, sizeof(a)) 
 ll dx[]={1,0,-1,0,1,-1,-1,1};
 ll dy[]={0,1,0,-1,1,1,-1,-1};
-ll dp[3001][3001][2];
-ll func(ll l,ll r,bool x,ll arr[])
-{
-    if(l>r)return 0;
-    if(dp[l][r][x]!=-1)return dp[l][r][x];
-    ll ans;
-    if(x)
-    {
-        ans=INT64_MIN;
-        ans=max(ans,func(l+1,r,!x,arr)+arr[l]);
-        ans=max(ans,func(l,r-1,!x,arr)+arr[r]);
-    }
-    else
-    {
-        ans=INT64_MAX;
-        ans=min(ans,func(l+1,r,!x,arr)-arr[l]);
-        ans=min(ans,func(l,r-1,!x,arr)-arr[r]);
-        
-    }
-    //cout<<l<<" "<<r<<" "<<x<<" "<<ans<<endl;
-    return dp[l][r][x]= ans;
-}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    memn(dp);
-    ll n;
-    cin>>n;
+    ll n,k;
+    cin>>n>>k;
     ll arr[n];
     for(auto &u:arr)cin>>u;
-    cout<<func(0,n-1,true,arr)<<endl;
-   
+    ll dp[k+1]={0};
+    ll pref[k+1];
+    for(int i=0;i<=min(arr[0],k);i++)dp[i]=1;
+    pref[0]=dp[0];
+    for(int i=1;i<=k;i++)pref[i]=(pref[i-1]+dp[i])%M;
+    for(int i=1;i<n;i++)
+    {
+        for(ll j=0;j<=k;j++)
+        {
+            ll x=min(arr[i],j);
+            dp[j]=pref[j];
+            if(j-x-1>=0)dp[j]=(dp[j]-pref[j-x-1]+M)%M;
+        }
+        pref[0]=dp[0];
+        for(int i=1;i<=k;i++)pref[i]=(pref[i-1]+dp[i])%M;
+    }
+    cout<<dp[k]<<endl;
 }
