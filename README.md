@@ -21,12 +21,12 @@
     - [x] Multi source BFS  
     - [x] DFS tree and backedges  
     - [x] Articulation point and Bridges
-    - [ ] Strongly connected component
-    - [ ] Trees
-    - [ ] Euler Tour
-    - [ ] LCA
-    - [ ] Re rooting of trees
-    - [ ] Network Flows
-    - [ ] Graph and Data Structures  
+    - [x] Strongly connected component
+    - [x] Trees
+    - [x] Euler Tour
+    - [x] LCA
+    - [x] Re rooting of trees
+    - [x] Network Flows
+    - [x] Graph and Data Structures  
 - [ ] Dynamic programming  
     - i'll add topic after i finish graph
