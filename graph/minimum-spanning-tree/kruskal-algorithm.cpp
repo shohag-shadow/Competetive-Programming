@@ -19,7 +19,7 @@ ll dy[]={0,1,0,-1,1,1,-1,-1};
 ll find_parent(ll n,ll par[])
 {
     if(par[n]==n)return n;
-    else par[n]=find_parent(par[n],par);
+    else return par[n]=find_parent(par[n],par);
 }
 bool union_set(ll a,ll b,ll par[])
 {
